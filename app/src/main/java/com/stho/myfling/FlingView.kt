@@ -1,6 +1,5 @@
 package com.stho.myfling
 
-import android.R.attr
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Canvas
@@ -36,10 +35,15 @@ class FlingView : View {
     private var velocityTracker: VelocityTracker? = null
     private var angle: Double = 0.0
     private val path: Path = Path()
-    private val paint: Paint = Paint().apply {
+    private val green: Paint = Paint().apply {
         this.color = Color.argb(255, 34, 102, 59)
-        this.strokeWidth = 3f
+        this.strokeWidth = 1f
         this.style = Paint.Style.FILL_AND_STROKE
+    }
+    private val gray: Paint = Paint().apply {
+        this.color = Color.argb(150, 90, 90, 90)
+        this.strokeWidth = 2f
+        this.style = Paint.Style.STROKE
     }
 
     private val fling = FlingAnimation(this, DynamicAnimation.Z).apply {
@@ -164,40 +168,40 @@ class FlingView : View {
         super.onDraw(canvas)
 
         path.reset()
-        val h = height.toDouble()
-        val w = width.toDouble()
+        val h = height.toFloat()
+        val w = width.toFloat()
         val l = h / 2
         for (alpha in 10..360 step 20) {
             val beta = Degree.normalizeTo180(angle - alpha)
             if (-90.0 <= beta && beta <= 90.0) {
-                val y = l * (1 - Degree.sin(beta))
-                val x0 = 0f
-                val x1 = w.toFloat()
-                val y0 = y.toFloat()
-                path.moveTo(x0, y0)
-                path.lineTo(x1, y0)
+                val sinBeta = Degree.sin(beta).toFloat()
+                val y = l * (1 - sinBeta)
+                val x = 0f
+                path.moveTo(x, y)
+                path.lineTo(w, y)
             }
         }
-        canvas.drawPath(path, paint)
+        canvas.drawPath(path, gray)
 
-        val defaultTextSize = resources.getDimensionPixelSize(R.dimen.myFontSize).toFloat()
-
+        val projectionRadius = 5 * l
+        green.textSize = resources.getDimensionPixelSize(R.dimen.myFontSize).toFloat()
         for (alpha in 0..350 step 20) {
             val beta = Degree.normalizeTo180(angle - alpha)
             if (-90.0 <= beta && beta <= 90.0) {
-                val y = (l * (1 - Degree.sin(beta))).toFloat()
+                val cosBeta = Degree.cos(beta).toFloat()
+                val sinBeta = Degree.sin(beta).toFloat()
+                val x = w / 2
+                val y = l * (1 - sinBeta)
                 val text = alpha.toString()
-                paint.textSize = defaultTextSize
-                val textWith = paint.measureText(text)
-                val x0 = (w.toFloat() - textWith) / 2
-                val y0 = y + defaultTextSize / 2
+                val factor = (projectionRadius + l * cosBeta) / (projectionRadius + l)
+                val textWith = green.measureText(text)
+                val textSize = green.textSize
                 canvas.save()
-                canvas.scale(1f, Degree.cos(beta).toFloat(), 0f, y)
-                canvas.drawText(alpha.toString(), x0, y0, paint)
+                canvas.scale(factor, factor * cosBeta, x, y)
+                canvas.drawText(alpha.toString(), x - textWith / 2, y + textSize / 2, green)
                 canvas.restore()
             }
         }
-        canvas.drawPath(path, paint)
     }
 
     companion object {
