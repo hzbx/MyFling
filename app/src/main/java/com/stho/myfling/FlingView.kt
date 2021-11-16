@@ -171,7 +171,7 @@ class FlingView : View {
         val h = height.toFloat()
         val w = width.toFloat()
         val l = h / 2
-        for (alpha in 10..360 step 20) {
+        for (alpha in 15..360 step 30) {
             val beta = Degree.normalizeTo180(angle - alpha)
             if (-90.0 <= beta && beta <= 90.0) {
                 val sinBeta = Degree.sin(beta).toFloat()
@@ -185,7 +185,7 @@ class FlingView : View {
 
         val projectionRadius = 5 * l
         green.textSize = resources.getDimensionPixelSize(R.dimen.myFontSize).toFloat()
-        for (alpha in 0..350 step 20) {
+        for (alpha in 0..350 step 30) {
             val beta = Degree.normalizeTo180(angle - alpha)
             if (-90.0 <= beta && beta <= 90.0) {
                 val cosBeta = Degree.cos(beta).toFloat()

@@ -46,7 +46,7 @@
         app:layout_constraintBottom_toBottomOf="@id/guidelineBottom"
         app:layout_constraintStart_toStartOf="@id/guidelineMiddle"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="7dp" />
+        android:layout_margin="11dp" />
 
     <com.stho.myfling.CircleView
         android:id="@+id/ring"
@@ -56,7 +56,7 @@
         app:layout_constraintBottom_toBottomOf="@id/guidelineBottom"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="@id/guidelineMiddle"
-        android:layout_margin="7dp" />
+        android:layout_margin="11dp" />
 
     <ImageView
         android:id="@+id/reset"
@@ -68,5 +68,26 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:src="@drawable/reset"
         android:contentDescription="@string/label_reset" />
+
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        app:layout_constraintTop_toTopOf="@id/guidelineTop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/guidelineMiddle"
+        android:contentDescription="@string/label_target"
+        android:src="@drawable/target"
+        android:alpha="0.5"/>
+
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        app:layout_constraintTop_toTopOf="@id/guidelineTop"
+        app:layout_constraintBottom_toBottomOf="@id/guidelineBottom"
+        app:layout_constraintStart_toStartOf="@id/guidelineMiddle"
+        android:contentDescription="@string/label_target"
+        android:src="@drawable/target"
+        android:rotation="270"
+        android:alpha="0.5"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

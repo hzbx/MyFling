@@ -182,7 +182,7 @@ class CircleView : View {
 
         // ring + degrees + numbers
         matrix.setTranslate(dx, dy)
-        matrix.postRotate(angle.toFloat(), px, py)
+        matrix.postRotate(-angle.toFloat(), px, py)
         canvas.drawBitmap(ring!!, matrix, null)
     }
 
@@ -196,7 +196,7 @@ class CircleView : View {
     private fun getAngle(x: Float, y: Float): Double {
         val cx = (width shr 1).toFloat()
         val cy = (height shr 1).toFloat()
-        return atan2((y - cy).toDouble(), (x - cx).toDouble()) * 180 / Math.PI + 90
+        return -atan2((y - cy).toDouble(), (x - cx).toDouble()) * 180 / Math.PI + 90
     }
 
     companion object {
