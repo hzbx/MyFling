@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">MyFling</string>
+    <string name="label_reset">Reset</string>
+</resources>
