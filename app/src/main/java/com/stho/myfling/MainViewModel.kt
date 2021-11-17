@@ -4,6 +4,8 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
+import kotlin.math.roundToInt
 
 class MainViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -11,6 +13,9 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     val angleLD: LiveData<Double>
         get() = angleLiveData
+
+    val canResetLD: LiveData<Boolean>
+        get() = Transformations.map(angleLiveData) { angle -> angle.roundToInt() != 0 }
 
     fun rotate(delta: Double) {
         val newAngle = Degree.normalize(angle + delta)

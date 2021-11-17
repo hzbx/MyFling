@@ -2,4 +2,8 @@
     <string name="app_name">MyFling</string>
     <string name="label_reset">Reset</string>
     <string name="label_target">Target</string>
+    <string name="label_plus">Plus</string>
+    <string name="label_minus">Minus</string>
+    <string name="label_info">0°</string>
+    <string name="label_info_param">%d°</string>
 </resources>

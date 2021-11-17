@@ -31,8 +31,8 @@
         android:id="@+id/info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="30sp"
-        android:text="Hello World!"
+        android:textSize="@dimen/infoTextSize"
+        android:text="@string/label_info"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/guidelineTop"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -42,36 +42,39 @@
         android:id="@+id/wheel"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_margin="@dimen/flingMargin"
         app:layout_constraintTop_toTopOf="@id/guidelineTop"
         app:layout_constraintBottom_toBottomOf="@id/guidelineBottom"
         app:layout_constraintStart_toStartOf="@id/guidelineMiddle"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="11dp" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <com.stho.myfling.CircleView
         android:id="@+id/ring"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_margin="@dimen/flingMargin"
         app:layout_constraintTop_toTopOf="@id/guidelineTop"
         app:layout_constraintBottom_toBottomOf="@id/guidelineBottom"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/guidelineMiddle"
-        android:layout_margin="11dp" />
+        app:layout_constraintEnd_toEndOf="@id/guidelineMiddle" />
 
     <ImageView
         android:id="@+id/reset"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
+        android:layout_width="@dimen/resetSize"
+        android:layout_height="@dimen/resetSize"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/guidelineBottom"
         app:layout_constraintBottom_toBottomOf="parent"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
         android:src="@drawable/reset"
         android:contentDescription="@string/label_reset" />
 
     <ImageView
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="@dimen/targetSize"
+        android:layout_height="@dimen/targetSize"
         app:layout_constraintTop_toTopOf="@id/guidelineTop"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="@id/guidelineMiddle"
@@ -80,8 +83,8 @@
         android:alpha="0.5"/>
 
     <ImageView
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="@dimen/targetSize"
+        android:layout_height="@dimen/targetSize"
         app:layout_constraintTop_toTopOf="@id/guidelineTop"
         app:layout_constraintBottom_toBottomOf="@id/guidelineBottom"
         app:layout_constraintStart_toStartOf="@id/guidelineMiddle"
@@ -89,5 +92,31 @@
         android:src="@drawable/target"
         android:rotation="270"
         android:alpha="0.5"/>
+
+    <ImageView
+        android:id="@+id/plus"
+        android:layout_width="@dimen/buttonSize"
+        android:layout_height="@dimen/buttonSize"
+        android:layout_margin="@dimen/buttonMargin"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/plus"
+        android:contentDescription="@string/label_plus"/>
+
+    <ImageView
+        android:id="@+id/minus"
+        android:layout_width="@dimen/buttonSize"
+        android:layout_height="@dimen/buttonSize"
+        android:layout_margin="@dimen/buttonMargin"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/minus"
+        android:contentDescription="@string/label_minus"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
