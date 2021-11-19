@@ -1,5 +1,6 @@
 package com.stho.myfling
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -27,6 +28,7 @@ class MainActivity : AppCompatActivity() {
         resetButtonAnimation.cleanup()
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private fun setupListener() {
         binding.wheel.setOnRotateListener(object : OnRotateListener{
             override fun onRotate(delta: Double) {
@@ -39,8 +41,8 @@ class MainActivity : AppCompatActivity() {
             }
         })
         binding.reset.setOnClickListener { viewModel.reset() }
-        binding.plus.setOnClickListener { viewModel.rotate(+1.0) }
-        binding.minus.setOnClickListener { viewModel.rotate(-1.0) }
+        binding.plus.setOnTouchListener(RepeatingTouchListener({ viewModel.rotate(+1.0) }))
+        binding.minus.setOnTouchListener(RepeatingTouchListener({ viewModel.rotate(-1.0) }))
     }
 
     private fun setupObserver() {
